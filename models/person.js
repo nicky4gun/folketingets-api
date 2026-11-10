@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const personSchema = new mongoose.Schema({
   navn: { type: String, required: true },
+  ministerPost: { type: String },
   parti: { type: String, required: true },
   position: {
       type: String,
@@ -10,10 +11,6 @@ const personSchema = new mongoose.Schema({
   startDato: { type: Date, required: true }
 });
 
-const Minister = mongoose.model('Minister', personSchema, 'ministre');
-const Formand = mongoose.model('Formand', personSchema, 'formænd');
+const Person = mongoose.model('Person', personSchema, 'personer');
 
-module.exports = {
-    Minister,
-    Formand
-};
+module.exports = Person;
