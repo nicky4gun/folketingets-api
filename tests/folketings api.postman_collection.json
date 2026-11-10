@@ -1,0 +1,177 @@
+{
+  "info": {
+    "_postman_id": "418dd75f-1d37-4da8-8ab2-984fb3f915d5",
+    "name": "folketings api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58677875",
+    "_collection_link": "https://go.postman.co/collection/58677875-418dd75f-1d37-4da8-8ab2-984fb3f915d5?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "get all",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\n  pm.response.to.have.status(200);\n});\n\npm.test(\"Response is an array\", function () {\n  const json = pm.response.json();\n  pm.expect(json).to.be.an(\"array\");\n});\n\npm.test(\"Each person has required fields\", function () {\n  const json = pm.response.json();\n  json.forEach(function (person) {\n    pm.expect(person).to.have.property(\"_id\");\n    pm.expect(person).to.have.property(\"navn\");\n    pm.expect(person).to.have.property(\"parti\");\n    pm.expect(person).to.have.property(\"position\");\n  });\n});\n\npm.test(\"Response time is less than 2000ms\", function () {\n  pm.expect(pm.response.responseTime).to.be.below(2000);\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/persons",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "persons"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get one person",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\n  pm.response.to.have.status(200);\n});\n\npm.test(\"Response is an object\", function () {\n  const json = pm.response.json();\n  pm.expect(json).to.be.an(\"object\");\n});\n\npm.test(\"Person has required fields\", function () {\n  const json = pm.response.json();\n  pm.expect(json).to.have.property(\"_id\");\n  pm.expect(json).to.have.property(\"navn\");\n  pm.expect(json).to.have.property(\"parti\");\n  pm.expect(json).to.have.property(\"position\");\n  pm.expect(json).to.have.property(\"startDato\");\n});\n\npm.test(\"Response time is less than 2000ms\", function () {\n  pm.expect(pm.response.responseTime).to.be.below(2000);\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/persons/6af3018c1f4219459a06d84e",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "persons",
+            "6af3018c1f4219459a06d84e"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "addperson",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {\n  pm.response.to.have.status(201);\n});\n\npm.test(\"Response is an object\", function () {\n  const json = pm.response.json();\n  pm.expect(json).to.be.an(\"object\");\n});\n\npm.test(\"Created person has required fields\", function () {\n  const json = pm.response.json();\n  pm.expect(json).to.have.property(\"_id\");\n  pm.expect(json).to.have.property(\"navn\");\n  pm.expect(json).to.have.property(\"parti\");\n  pm.expect(json).to.have.property(\"position\");\n  pm.expect(json).to.have.property(\"startDato\");\n});\n\npm.test(\"Created person name matches request\", function () {\n  const json = pm.response.json();\n  pm.expect(json.navn).to.eql(\"frank\");\n});\n\npm.test(\"Response time is less than 2000ms\", function () {\n  pm.expect(pm.response.responseTime).to.be.below(2000);\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"navn\": \"frank\",\r\n    \"ministerPost\": \"minister of deadlock\",\r\n    \"parti\":\"gt\",\r\n    \"position\":\"minister\",\r\n    \"startDato\": \"2005-12-10\" \r\n\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/persons",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "persons"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "updateperson",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\n  pm.response.to.have.status(200);\n});\n\npm.test(\"Response is an object\", function () {\n  const json = pm.response.json();\n  pm.expect(json).to.be.an(\"object\");\n});\n\npm.test(\"Updated person has required fields\", function () {\n  const json = pm.response.json();\n  pm.expect(json).to.have.property(\"_id\");\n  pm.expect(json).to.have.property(\"navn\");\n  pm.expect(json).to.have.property(\"parti\");\n  pm.expect(json).to.have.property(\"position\");\n  pm.expect(json).to.have.property(\"startDato\");\n});\n\npm.test(\"Updated person name matches request\", function () {\n  const json = pm.response.json();\n  pm.expect(json.navn).to.eql(\"bob\");\n});\n\npm.test(\"Response time is less than 2000ms\", function () {\n  pm.expect(pm.response.responseTime).to.be.below(2000);\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": " {\r\n \"_id\":\"6af2fc661f4219459a06d846\",\r\n    \"navn\": \"bob\",\r\n    \"ministerPost\": \"THE BIG MINISTER\",\r\n    \"parti\": \"bt\",\r\n    \"position\": \"minister\",\r\n    \"startDato\": \"2005-12-10T00:00:00.000Z\",\r\n    \"__v\": 0\r\n }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/persons/6af3018c1f4219459a06d84e",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "persons",
+            "6af3018c1f4219459a06d84e"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "deleteperson",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\n  pm.response.to.have.status(200);\n});\n\npm.test(\"Response confirms deletion\", function () {\n  const json = pm.response.json();\n  pm.expect(json).to.be.an(\"object\");\n});\n\npm.test(\"Deleted person has expected id\", function () {\n  const json = pm.response.json();\n  pm.expect(json).to.have.property(\"_id\");\n  pm.expect(json._id).to.eql(\"6af2fc661f4219459a06d846\");\n});\n\npm.test(\"Response time is less than 2000ms\", function () {\n  pm.expect(pm.response.responseTime).to.be.below(2000);\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/persons/6af2fe221f4219459a06d84c",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "persons",
+            "6af2fe221f4219459a06d84c"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

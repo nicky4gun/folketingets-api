@@ -1,9 +1,10 @@
-const express = require('express')();
+const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const personRoutes = require('./routes/personRoutes');
 
 const app = express();
+
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(`/persons`, personRoutes);
