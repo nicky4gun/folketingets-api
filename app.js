@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const personRoutes = require('./routes/personRoutes');
+const errorhandler = require('./middelware/errorhandler');
 
 const app = express();
 
@@ -9,6 +10,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 app.use(`/persons`, personRoutes);
+app.use(errorhandler);
 
 mongoose.connect('mongodb://localhost:27017/folketinget')
     .then(() => console.log('Connected to MongoDB'))
