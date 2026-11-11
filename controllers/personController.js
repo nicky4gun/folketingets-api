@@ -35,7 +35,7 @@ exports.updatePerson = async (req, res) => {
   const updatedPerson = await Person.findByIdAndUpdate(
       req.params.id,
       { navn, ministerPost, parti, position, startDato },
-      { new: true, runValidators: true}
+      { returnDocument: 'after', runValidators: true}
   );
 
   if (!updatedPerson) {
