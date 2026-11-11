@@ -5,10 +5,10 @@ const personSchema = new mongoose.Schema({
   ministerPost: { type: String },
   parti: { type: String, required: true },
   position: {
-      type: String,
+      type: [String],
       enum: ['minister', 'formand'],
       required: true },
-  startDato: { type: Date, required: true }
+  startDato: { type: Date }
 });
 
 const Person = mongoose.model('Person', personSchema, 'personer');

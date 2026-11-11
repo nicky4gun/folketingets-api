@@ -8,7 +8,7 @@ const personSchema = Joi.object({
     .items(Joi.string().valid('minister', 'formand'))
     .min(1)
     .required(),
-  startDato: Joi.date().iso().required()
+  startDato: Joi.date().optional()
 });
 
 function validatePerson(req, res, next) {
