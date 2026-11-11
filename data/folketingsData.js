@@ -43,7 +43,6 @@ async function main() {
             startDato: new Date(String(startDato))
         }));
 
-        // Erstat den gamle liste med den aktuelle
         await collection.deleteMany({});
         await collection.insertMany(dokumenter);
 

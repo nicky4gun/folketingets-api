@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const personRoutes = require('./routes/personRoutes');
-const errorhandler = require('./middleware/errorhandler');
+const errorhandler = require('./middleware/errorHandler');
 
 const app = express();
 
