@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "d9c5c4ad-abb2-4065-8598-34d91d590f40",
-    "name": "folketings api",
+    "_postman_id": "30c0bb44-a304-4539-93e5-e515e742c3aa",
+    "name": "folketings api Copy",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "54353033",
-    "_collection_link": "https://go.postman.co/collection/54353033-d9c5c4ad-abb2-4065-8598-34d91d590f40?source=collection_link"
+    "_exporter_id": "58677875",
+    "_collection_link": "https://go.postman.co/collection/58677875-30c0bb44-a304-4539-93e5-e515e742c3aa?source=collection_link"
   },
   "item": [
     {
@@ -177,6 +177,52 @@
           "path": [
             "persons",
             "6af42d6eb6a842c8ba96f955"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "validering af person",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"navn\":\"b\",\r\n\"ministerPost\": \" \",\r\n\"parti\": \" \",\r\n\"position\": \"MINISTER\",\r\n\"startDato\": \" \"\r\n\r\n\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/persons",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "persons"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ugyldig person id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/persons/6af2fc661f4219459a06d84",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "persons",
+            "6af2fc661f4219459a06d84"
           ]
         }
       },
